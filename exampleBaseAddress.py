@@ -32,6 +32,7 @@ def get_absolute_address(pid, relative_address):
     base = get_base_address(pid)
     return base + relative_address
 
+''' This is an example of getting a base address
 pid = 44614
 # Example usage
 absolute_address = 0x200006A80350
@@ -63,17 +64,3 @@ except Exception as e:
     print(f"General error: {e}")
 
 '''
-task = mach.task_for_pid(pid)
-relative_addr = 0x1ffe9f884350
-reconstructed_addr = get_absolute_address(pid, relative_addr)
-data2 = None
-newData = mach.vm_read(task, reconstructed_addr, 1)
-while True:
-    data2 = mach.vm_read(task, reconstructed_addr, 1)
-    if data2 != newData:
-        print(f"Data verification: {data2.hex()}")
-        newData = data2
-
-data2 = mach.vm_read(task, reconstructed_addr, 1)
-print(f"Data verification: {data2.hex()}")'''
-
